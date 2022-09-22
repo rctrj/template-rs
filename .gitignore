@@ -1,3 +1,5 @@
+node_modules/
+
 ### NotepadPP template
 # Notepad++ backups #
 *.bak

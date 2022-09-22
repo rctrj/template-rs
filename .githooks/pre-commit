@@ -55,7 +55,9 @@ then
   echo "Please Remove the non-ascii character"
   exit 1
 fi
+echo "$GREENBOLD Branch validation successful $NORMAL"
 
 # If there are whitespace errors, print the offending file names and fail.
 exec git diff-index --check --cached "$against" --
+
 exit 0
