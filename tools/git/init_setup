@@ -1,5 +1,7 @@
 cd ../..
 
+brew install pre-commit
+
 # Setup commitlint
 # https://commitlint.js.org/#/./guides-local-setup?id=guides-local-setup
 npm install --save-dev @commitlint/{cli,config-conventional}
