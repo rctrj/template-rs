@@ -22,3 +22,5 @@ repos:
         - main
         - --branch
         - dev
+        - --pattern
+        - ^(?!((feature|bugfix|improvement|library|release|hotfix|tools)\/[a-zA-Z0-9\-]+)$).*
