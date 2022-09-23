@@ -24,3 +24,11 @@ repos:
         - dev
         - --pattern
         - ^(?!((feature|bugfix|improvement|library|release|hotfix|tools)\/[a-zA-Z0-9\-]+)$).*
+
+- repo: https://github.com/doublify/pre-commit-rust
+  rev: v1.0
+  hooks:
+    - id: fmt
+      args: ['--verbose', '--']
+    - id: clippy
+    - id: cargo-check
