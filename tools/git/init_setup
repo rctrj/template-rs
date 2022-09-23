@@ -1,13 +1,4 @@
 cd ../..
 
 brew install pre-commit
-
-# Setup commitlint
-# https://commitlint.js.org/#/./guides-local-setup?id=guides-local-setup
-npm install --save-dev @commitlint/{cli,config-conventional}
-npm install husky --save-dev
-npx husky install
-
-# husky install changes the hooks path to .husky
-# setting it to .githooks where all our hooks are present
 git config core.hooksPath .githooks
