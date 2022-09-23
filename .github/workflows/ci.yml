@@ -1,0 +1,141 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  test:
+
+    name: Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Test all features
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all-features --workspace
+
+  rustfmt:
+
+    name: Rustfmt
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          components: rustfmt
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Check formatting
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+  clippy:
+
+    name: Clippy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Clippy check
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all-targets --all-features --workspace -- -D warnings
+
+
+  docs:
+
+    name: Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Clippy documentation
+        env:
+          RUSTDOCFLAGS: -D warnings
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --no-deps --document-private-items --all-features --workspace --examples
+
+
+  publish-dry-run:
+
+    name: Publish dry run
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Publish
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --dry-run
