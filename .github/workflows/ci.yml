@@ -139,3 +139,18 @@ jobs:
         with:
           command: publish
           args: --dry-run
+
+  ci-success:
+
+    name: CI
+    if: ${{ success() }}
+    needs:
+      - test
+      - rustfmt
+      - clippy
+      - docs
+      - publish-dry-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI succeeded
+        run: exit 0

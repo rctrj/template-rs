@@ -30,7 +30,7 @@ repos:
         - --branch
         - dev
         - --pattern
-        - ^(?!((feature|bugfix|improvement|library|release|hotfix|tools)\/[a-zA-Z0-9\-]+)$).*
+        - ^(?!((feature|bugfix|improvement|library|release|hotfix|tools|setup)\/[a-zA-Z0-9\-]+)$).*
 
 - repo: https://github.com/doublify/pre-commit-rust
   rev: v1.0

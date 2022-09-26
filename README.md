@@ -6,12 +6,12 @@ Integrations:
 2. Branch Name Validation
 3. Commit Title Validation using [commitlint](https://github.com/conventional-changelog/commitlint)
 4. Rust Fmt settings
+5. CI setup for testing before PR merge
+6. Commit Template
+7. Run RustFMT pre-commit
 
 Todos:
-* [ ] CI
 * [ ] CD
-* [ ] Commit Template
-* [ ] Run RustFMT pre-commit
 
 ---
 ## Initial Setup ##
@@ -20,8 +20,5 @@ Please note that skipping this might result in your commits and branches getting
 
 The following steps require that you have brew install in your system
 Steps:
-1. Goto: tools/git
-2. Give permission to `init_setup.sh` using `chmod +x init_setup.sh`
-3. Run `init_setup.sh`
-
-This should create a `.husky` folder which is used for commit validation
+1. Goto: tools/git 
+2. Run `init_setup.sh`
