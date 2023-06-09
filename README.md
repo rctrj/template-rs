@@ -1,5 +1,4 @@
-This is a rust template that can be used to quickstart any rust project.
-Things are set here based on personal preference of the [author](https://github.com/rctrj)
+An opiniated template repository for rust single crate projects
 
 Integrations:
 1. Cargo
@@ -9,9 +8,6 @@ Integrations:
 5. CI setup for testing before PR merge
 6. Commit Template
 7. Run RustFMT pre-commit
-
-Todos:
-* [ ] CD
 
 ---
 ## Initial Setup ##
